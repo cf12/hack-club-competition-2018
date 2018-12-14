@@ -1,12 +1,15 @@
 import React from 'react'
 
+import { Background } from '../../components'
+
 import './index.scss'
 
 class PageHome extends React.Component {
-  render() {
+  render () {
     return (
-      <div className='page-home'>
-        <p>asd</p>
+      <div className='page-home fb-center'>
+        <Background />
+        <p>thank you canvas very cool</p>
       </div>
     )
   }
