@@ -1,5 +1,7 @@
 import React from 'react'
 
+const fps = 60
+
 const styles = {
   position: 'absolute',
   margin: 0,
@@ -9,13 +11,14 @@ const styles = {
 
 class Flake {
   constructor () {
-    this.radius = Math.random() * 4 + 2
+    this.radius = Math.random() * 3 + 2
+    this.opacity = Math.random() * 0.5 + 0.5
 
     this.xorig = Math.random() * 1920
     this.x = this.xorig
+    this.y = Math.random() * 100 - 100
     this.xvel = 0.2
-    this.y = Math.random() * 100
-    this.yvel = Math.random() * 0.5 + 0.3
+    this.yvel = Math.random() * 0.5 + 0.4
 
     if (Math.random() >= 0.5) {
       this.xvel *= -1
@@ -26,10 +29,10 @@ class Flake {
 
   draw (ctx) {
     ctx.beginPath()
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true)
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
     ctx.closePath()
 
-    ctx.fillStyle = 'white'
+    ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`
     ctx.fill()
 
     if (Math.abs(this.xorig - (this.x + this.xvel)) >= this.wiggle) {
@@ -48,22 +51,15 @@ class Background extends React.Component {
     this.canvas = React.createRef()
 
     this.draw = this.draw.bind(this)
+    this.addFlakes = this.addFlakes.bind(this)
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
 
     this.flakes = []
-
-    for (let i = 0; i < 500; i++) {
-      this.flakes.push(new Flake())
-    }
 
     this.state = {
       width: 0,
       height: 0
     }
-  }
-
-  componentWillMount () {
-
   }
 
   updateWindowDimensions () {
@@ -75,11 +71,23 @@ class Background extends React.Component {
 
   draw (canvas) {
     const ctx = canvas.getContext('2d')
-
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-    for (const flake of this.flakes) {
+    for (let i = 0; i < this.flakes.length; i++) {
+      const flake = this.flakes[i]
+
+      if (flake.y > canvas.height - 100) {
+        this.flakes.splice(i, 1)
+      }
+
       flake.draw(ctx)
+    }
+  }
+
+  addFlakes () {
+    for (let i = 0; i < 30; i++) {
+      const flake = new Flake()
+      this.flakes.push(flake)
     }
   }
 
@@ -87,12 +95,12 @@ class Background extends React.Component {
     this.updateWindowDimensions()
     window.addEventListener('resize', this.updateWindowDimensions)
 
-
-
-
     setInterval(() => {
       this.draw(this.canvas.current)
-    }, 1000 / 60)
+    }, 1000 / fps)
+
+    this.addFlakes()
+    setInterval(this.addFlakes, 2000)
   }
 
   componentWillUnmount() {
@@ -100,8 +108,6 @@ class Background extends React.Component {
   }
 
   render () {
-    console.log(this.state)
-
     return <canvas
       ref={this.canvas}
       style={styles}
