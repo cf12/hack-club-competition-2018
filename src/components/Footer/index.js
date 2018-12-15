@@ -8,7 +8,9 @@ class Footer extends React.Component {
       <div className='footer'>
         <p>
           Made with ❤️ by CF12 •
-          <a> GitHub</a>
+          <a
+            className='footer__link'
+            href='https://github.com/cf12'> GitHub</a>
         </p>
       </div>
     )

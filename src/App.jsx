@@ -2,6 +2,7 @@ import React from 'react'
 
 import './styles/flexbox.scss'
 import './styles/fonts.scss'
+import './styles/root.scss'
 
 import { PageHome } from './pages'
 

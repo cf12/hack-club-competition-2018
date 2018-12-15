@@ -19,8 +19,17 @@
 .present {
   width: 150px;
 
+  transform: none;
   cursor: pointer;
 
-  animation: wobble 2s ease;
-  animation-iteration-count: infinite;
+  transition: all 0.2s ease;
+
+  &:not(:hover) {
+    animation: wobble 2s ease;
+    animation-iteration-count: infinite;
+  }
+
+  &:hover {
+    transform: scale(1.2);
+  }
 }
