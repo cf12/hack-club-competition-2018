@@ -1,7 +1,9 @@
-import Background from './Background'
+import BackgroundSnow from './BackgroundSnow'
 import Present from './Present'
+import Footer from './Footer'
 
 export {
-  Background,
-  Present
+  BackgroundSnow,
+  Present,
+  Footer
 }

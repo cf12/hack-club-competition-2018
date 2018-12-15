@@ -7938,6 +7938,11 @@ react-error-overlay@^5.1.0:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.0.tgz#c516995a5652e7bfbed8b497910d5280df74a7e8"
   integrity sha512-akMy/BQT5m1J3iJIHkSb4qycq2wzllWsmmolaaFVnb+LPV9cIJ/nTud40ZsiiT0H3P+/wXIdbjx2fzF61OaeOQ==
 
+react-parallax-mousemove@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-parallax-mousemove/-/react-parallax-mousemove-1.1.0.tgz#5f6738140cf87ca386f71beaa531397d7ff3d1ad"
+  integrity sha1-X2c4FAz4fKOG9xvqpTE5fX/z0a0=
+
 react-scripts@2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-2.1.1.tgz#c2959a756b0b61d3090adece0d7aedd324dff8a5"

@@ -1,6 +1,7 @@
 import React from 'react'
 
 const fps = 60
+const ttl = 30 * 60
 
 const styles = {
   position: 'absolute',
@@ -13,6 +14,8 @@ class Flake {
   constructor () {
     this.radius = Math.random() * 3 + 2
     this.opacity = Math.random() * 0.5 + 0.5
+    this.wiggle = Math.random() * 20 + 20
+    this.life = 0
 
     this.xorig = Math.random() * 1920
     this.x = this.xorig
@@ -23,8 +26,6 @@ class Flake {
     if (Math.random() >= 0.5) {
       this.xvel *= -1
     }
-
-    this.wiggle = Math.random() * 20 + 20
   }
 
   draw (ctx) {
@@ -41,10 +42,11 @@ class Flake {
 
     this.x += this.xvel
     this.y += this.yvel
+    this.life++
   }
 }
 
-class Background extends React.Component {
+class BackgroundSnow extends React.Component {
   constructor () {
     super()
 
@@ -76,7 +78,7 @@ class Background extends React.Component {
     for (let i = 0; i < this.flakes.length; i++) {
       const flake = this.flakes[i]
 
-      if (flake.y > canvas.height - 100) {
+      if (flake.life >= ttl) {
         this.flakes.splice(i, 1)
       }
 
@@ -116,4 +118,4 @@ class Background extends React.Component {
   }
 }
 
-export default Background
+export default BackgroundSnow
