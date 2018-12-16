@@ -10,7 +10,11 @@ class Footer extends React.Component {
           Made with ❤️ by CF12 •
           <a
             className='footer__link'
-            href='https://github.com/cf12'> GitHub</a>
+            href='https://github.com/cf12'> GitHub </a>
+          •
+          <a
+            className='footer__link'
+            href='https://github.com/cf12/hack-club-competition-2018'> Repo</a>
         </p>
       </div>
     )
