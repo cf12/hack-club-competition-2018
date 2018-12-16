@@ -22,7 +22,6 @@
   transform: none;
   cursor: pointer;
 
-  transition: all 0.2s ease;
 
   &:not(:hover) {
     animation: wobble 2s ease;
@@ -30,6 +29,6 @@
   }
 
   &:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
   }
 }

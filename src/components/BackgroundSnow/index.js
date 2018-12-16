@@ -11,13 +11,13 @@ const styles = {
 }
 
 class Flake {
-  constructor () {
+  constructor (width) {
     this.radius = Math.random() * 3 + 2
     this.opacity = Math.random() * 0.5 + 0.5
     this.wiggle = Math.random() * 20 + 20
     this.life = 0
 
-    this.xorig = Math.random() * 1920
+    this.xorig = Math.random() * width
     this.x = this.xorig
     this.y = Math.random() * 100 - 100
     this.xvel = 0.2
@@ -87,8 +87,10 @@ class BackgroundSnow extends React.Component {
   }
 
   addFlakes () {
+    if (this.flakes.length > 500) return
+
     for (let i = 0; i < 30; i++) {
-      const flake = new Flake()
+      const flake = new Flake(this.state.width)
       this.flakes.push(flake)
     }
   }
@@ -100,8 +102,6 @@ class BackgroundSnow extends React.Component {
     setInterval(() => {
       this.draw(this.canvas.current)
     }, 1000 / fps)
-
-    this.addFlakes()
     setInterval(this.addFlakes, 2000)
   }
 
