@@ -3,15 +3,37 @@ import React from 'react'
 import {
   BackgroundSnow,
   Present,
-  Footer
+  Footer,
+  Loader
 } from '../../components'
 
 import './index.scss'
 
 class PageHome extends React.Component {
+  constructor () {
+    super()
+
+    this.state = {
+      loading: true
+    }
+  }
+
+  componentWillMount () {
+    setTimeout(() => {
+      this.setState({
+        loading: false
+      })
+    }, 2000)
+  }
+
   render () {
     return (
       <div className='page-home fb-ccol'>
+        {
+          (this.state.loading)
+            ? <Loader />
+            : null
+        }
 
         <h1 className='page-home__title'>
           Need help finding a gift for your friend?
