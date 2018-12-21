@@ -41,7 +41,7 @@ class PageHome extends React.Component {
         <Present />
 
         <div className='page-home__background'>
-          {/* <Elf /> */}
+          <Elf />
           <BackgroundSnow />
           <div className='page-home__background__scenery' />
         </div>

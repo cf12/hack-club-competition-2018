@@ -18,7 +18,7 @@ class Flake {
     this.life = 0
 
     // Padded by 200px to gen enough snow for parallax
-    this.xorig = (Math.random() * (width + 200)) - 200
+    this.xorig = (Math.random() * (width + 600)) - 300
     this.x = this.xorig
     this.y = Math.random() * 100 - 100
     this.xvel = 0.2

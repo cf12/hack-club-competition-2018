@@ -26,7 +26,15 @@ class Elf extends React.Component {
           className='elf__image'
           alt='elf'
           onClick={this.handleClick} />
-        <div className='elf__popup'>p</div>
+          <div className='elf__popup'>
+            <div
+              className='g-ytsubscribe'
+              data-channel="pewdiepie"
+              data-layout="default"
+              data-theme="dark"
+              data-count="default" />
+            {/* <p className='elf__popup__title'>sub to poods pl0x</p> */}
+          </div>
       </div>
     )
   }
