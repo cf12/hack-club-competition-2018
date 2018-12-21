@@ -4,7 +4,8 @@ import {
   BackgroundSnow,
   Present,
   Footer,
-  Loader
+  Loader,
+  Elf
 } from '../../components'
 
 import './index.scss'
@@ -29,11 +30,7 @@ class PageHome extends React.Component {
   render () {
     return (
       <div className='page-home fb-ccol'>
-        {
-          (this.state.loading)
-            ? <Loader />
-            : null
-        }
+        <Loader />
 
         <h1 className='page-home__title'>
           Need help finding a gift for your friend?
@@ -44,6 +41,7 @@ class PageHome extends React.Component {
         <Present />
 
         <div className='page-home__background'>
+          {/* <Elf /> */}
           <BackgroundSnow />
           <div className='page-home__background__scenery' />
         </div>

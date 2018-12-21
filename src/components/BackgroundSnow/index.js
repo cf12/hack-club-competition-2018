@@ -17,7 +17,8 @@ class Flake {
     this.wiggle = Math.random() * 20 + 20
     this.life = 0
 
-    this.xorig = Math.random() * width
+    // Padded by 200px to gen enough snow for parallax
+    this.xorig = (Math.random() * (width + 200)) - 200
     this.x = this.xorig
     this.y = Math.random() * 100 - 100
     this.xvel = 0.2
@@ -28,7 +29,7 @@ class Flake {
     }
   }
 
-  draw (ctx) {
+  draw (ctx, x) {
     ctx.beginPath()
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
     ctx.closePath()
@@ -40,7 +41,7 @@ class Flake {
       this.xvel *= -1
     }
 
-    this.x += this.xvel
+    this.x += x * 0.0005 + this.xvel
     this.y += this.yvel
     this.life++
   }
@@ -55,13 +56,23 @@ class BackgroundSnow extends React.Component {
     this.draw = this.draw.bind(this)
     this.addFlakes = this.addFlakes.bind(this)
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
+    this.updateMouseLocation = this.updateMouseLocation.bind(this)
 
     this.flakes = []
 
     this.state = {
       width: 0,
-      height: 0
+      height: 0,
+      mouseX: 0,
+      mouseY: 0
     }
+  }
+
+  updateMouseLocation (e) {
+    this.setState({
+      mouseX: e.clientX,
+      mouseY: e.clientY
+    })
   }
 
   updateWindowDimensions () {
@@ -82,12 +93,14 @@ class BackgroundSnow extends React.Component {
         this.flakes.splice(i, 1)
       }
 
-      flake.draw(ctx)
+      const calculatedX = this.state.mouseX - (this.state.width / 2)
+
+      flake.draw(ctx, calculatedX)
     }
   }
 
   addFlakes () {
-    if (this.flakes.length > 500) return
+    if (this.flakes.length > 1000) return
 
     for (let i = 0; i < 30; i++) {
       const flake = new Flake(this.state.width)
@@ -98,11 +111,12 @@ class BackgroundSnow extends React.Component {
   componentDidMount () {
     this.updateWindowDimensions()
     window.addEventListener('resize', this.updateWindowDimensions)
+    window.addEventListener('mousemove', this.updateMouseLocation)
 
     setInterval(() => {
       this.draw(this.canvas.current)
     }, 1000 / fps)
-    setInterval(this.addFlakes, 2000)
+    setInterval(this.addFlakes, 1500)
   }
 
   componentWillUnmount() {
