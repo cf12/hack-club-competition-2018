@@ -4,22 +4,29 @@
 
   align-items: center;
 
-  bottom: 20px;
-  left: 20px;
-
   width: 300px;
   height: 64px;
+  bottom: 10px;
+  left: 20px;
 
   &__image {
     width: 64px;
     height: 64px;
   }
 
+  &:hover > &__popup {
+    opacity: 1;
+  }
+
   &__popup {
-    margin-left: 15px;
-    margin-top: 30px;
+    margin-left: 18px;
+
+    transition: all 300ms ease;
+    opacity: 0;
 
     &__title {
+      font-size: 16px;
+      font-weight: 600;
       margin: 0;
     }
   }

@@ -32,6 +32,8 @@ class PageHome extends React.Component {
       <div className='page-home fb-ccol'>
         <Loader />
 
+        <h1 className='page-home__title-top'>GIFT FINDER 2018</h1>
+
         <h1 className='page-home__title'>
           Need help finding a gift for your friend?
         </h1>
